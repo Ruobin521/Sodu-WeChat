@@ -1,6 +1,6 @@
-/* components/bookitem/bookitem.wxss */
+/* components/chapteritem/chapteritem.wxss *//* components/bookitem/bookitem.wxss */
 
-.bookitem-container {
+.container {
   height: 120rpx;
   padding: 10rpx 35rpx 10rpx 35rpx;
   /* border-top: 0.5rpx solid #dbdbdb;  */
@@ -8,7 +8,7 @@
   position: relative;
 }
  
-.bookitem-container:before{
+.container:before{
    content: " ";
    position: absolute;
    left: 0;
@@ -23,13 +23,8 @@
    transform: scaleY(0.5);
 }
 
-.header {
-  display: flex;
-}
-
-.book-name {
-  flex: 1;
-  font-size: 34rpx;
+.chapter-name {
+  font-size: 30rpx;
   color: #3a3a3a;
   line-height: 60rpx;
   font-weight: 400;
@@ -39,14 +34,20 @@
   text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }
 
-.update-time {
-  font-size: 26rpx;
+.lywz {
+  display: inline-block;
+  font-size: 28rpx;
   line-height: 60rpx;
-  color: #909090;
+  color: #888888;
   font-weight: 300;
+  word-break: keep-all; /* 不换行 */
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }
 
-.chapter-name {
+.update-time {
+  float: right;
   font-size: 28rpx;
   line-height: 60rpx;
   color: #888888;

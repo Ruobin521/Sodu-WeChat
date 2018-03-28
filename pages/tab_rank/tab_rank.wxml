@@ -1,5 +1,5 @@
 <!--pages/tab_rank/tab_rank.wxml-->
 <view id='root'>
-  <bookitem  wx:for="{{books}}" title="{{item.bookName}}" time="{{item.updateTime}}" subtitle="{{item.newestCatalogName}}" wx:key="{{item}}">
+  <bookitem bindtap='navigateToChapter' data-id="{{item.bookId}}" data-title="{{item.bookName}}" wx:for="{{books}}" title="{{item.bookName}}" time="{{item.updateTime}}" subtitle="{{item.newestCatalogName}}" wx:key="{{item}}">
   </bookitem>
 </view>

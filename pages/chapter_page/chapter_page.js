@@ -5,14 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    chapters: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.bookid)
+    var that = this
+    wx.request({
+      url: 'https://sodu.ruobin521.com/chapter?id=' + options.id + '&name=' + options.name,
+      success: function (res) {
+        var result = res.data
+        if (result.code == 0) {
+          console.log(res.data)
+          that.setData({
+            chapters: result.data
+          })
+        } else {
+          console.log(res.data)
+        }
+      }
+    })
   },
 
   /**

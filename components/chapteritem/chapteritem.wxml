@@ -1,0 +1,8 @@
+<!--components/bookitem/bookitem.wxml-->
+<view class='container'>
+  <view class='chapter-name'>{{title}}</view>
+  <view class='bottom'>
+    <view class='lywz'>{{subtitle}}</view>
+    <text class='update-time'>{{time}}</text>
+  </view>
+</view>

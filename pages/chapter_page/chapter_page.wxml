@@ -1,2 +1,5 @@
 <!--pages/chapter_page/chapter_page.wxml-->
-<text>pages/chapter_page/chapter_page.wxml</text>
+<view id='root'>
+  <chapteritem  wx:for="{{chapters}}" title="{{item.catalogkName}}" time="{{item.updateTime}}" subtitle="{{item.lyWeb}}" wx:key="{{item}}">
+  </chapteritem>
+</view>
