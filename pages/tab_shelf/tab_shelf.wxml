@@ -1,0 +1,3 @@
+<!--pages/tab_shelf/tab_shelf.wxml-->
+<button catchtap='navigateToChapter'>点击导航到chapter页面</button>
+<text>pages/tab_shelf/tab_shelf.wxml</text>

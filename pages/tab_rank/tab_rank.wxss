@@ -1,0 +1,4 @@
+/* pages/tab_rank/tab_rank.wxss */
+#root {
+  background: #EFEFF4;
+}

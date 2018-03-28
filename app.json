@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/tab_rank/tab_rank",
+    "pages/tab_shelf/tab_shelf",
+    "pages/tab_search/tab_search",
+    "pages/tab_update/tab_update",
+    "pages/tab_setting/tab_setting",
+    "pages/chapter_page/chapter_page"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0387FE",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "小说搜索阅读",
+    "backgroundColor": "#ff0000"
+  },
+  "tabBar": {
+    "selectedColor": "#007aff",
+    "color": "#a9b7b7",
+    "borderStyle": "#979797",
+    "backgroundColor": "#F7F7FA",
+    "list": [
+      {
+        "pagePath": "pages/tab_shelf/tab_shelf",
+        "text": "书架",
+        "iconPath": "images/tabbar/tabbar_local_shelf.png",
+        "selectedIconPath": "images/tabbar/tabbar_local_shelf_selected.png"
+      },
+      {
+        "pagePath": "pages/tab_rank/tab_rank",
+        "text": "排行",
+        "iconPath": "images/tabbar/tabbar_rank.png",
+        "selectedIconPath": "images/tabbar/tabbar_rank_selected.png"
+      },
+       {
+        "pagePath": "pages/tab_update/tab_update",
+        "text": "最近更新",
+        "iconPath": "images/tabbar/tabbar_update.png",
+        "selectedIconPath": "images/tabbar/tabbar_update_selected.png"
+      },
+      {
+        "pagePath": "pages/tab_search/tab_search",
+        "text": "搜索",
+        "iconPath": "images/tabbar/tabbar_search.png",
+        "selectedIconPath": "images/tabbar/tabbar_search_selected.png"
+      },
+     
+      {
+        "pagePath": "pages/tab_setting/tab_setting",
+        "text": "设置",
+        "iconPath": "images/tabbar/tabbar_setting.png",
+        "selectedIconPath": "images/tabbar/tabbar_setting_selected.png"
+      }
+    ]
+  }
+}

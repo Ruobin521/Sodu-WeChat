@@ -1,0 +1,7 @@
+/* pages/tab_shelf/tab_shelf.wxss */
+button {
+  width: 388rpx;
+  height: 128rpx;
+  font-size: 30rpx;
+  line-height: 128rpx
+}

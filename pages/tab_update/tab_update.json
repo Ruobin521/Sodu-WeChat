@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bookitem": "../../components/bookitem/bookitem"
+  },
+  "navigationBarTitleText": "最近更新"
+}
