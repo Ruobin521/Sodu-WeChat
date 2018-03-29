@@ -1,18 +1,12 @@
 // pages/tab_rank/tab_rank.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     books: []
   },
-  navigateToChapter: function (e) {
-    var data = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: '../chapter_page/chapter_page?id=' + data.id + '&name=' + data.title
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

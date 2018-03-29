@@ -36,7 +36,7 @@
 
 .lywz {
   display: inline-block;
-  font-size: 28rpx;
+  font-size: 26rpx;
   line-height: 60rpx;
   color: #888888;
   font-weight: 300;
@@ -48,7 +48,7 @@
 
 .update-time {
   float: right;
-  font-size: 28rpx;
+  font-size: 26rpx;
   line-height: 60rpx;
   color: #888888;
   font-weight: 300;
