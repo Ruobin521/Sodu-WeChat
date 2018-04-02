@@ -1,2 +1,9 @@
 <!--pages/tab_search/tab_search.wxml-->
-<text>pages/tab_search/tab_search.wxml</text>
+<view>
+  <search bindsearch="goSearch"></search>
+  <view class='no-reslut' style="display:{{isNoResult ? 'block': 'none'}}">无结果！</view>
+  <view class='list'>
+      <bookitem wx:for="{{books}}"  book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="来源:{{item.lyWeb}}" wx:key="{{item}}">
+  </bookitem>
+  </view>
+</view>

@@ -1,8 +1,8 @@
 <!--components/bookitem/bookitem.wxml-->
 <view class='bookitem-container' bindtap='navigateToChapter'>
   <view class='header'>
-    <text class='book-name'>{{book.bookName}}</text>
-    <text class='update-time'>{{book.updateTime}}</text>
+    <text class='book-name'>{{title}}</text>
+    <text class='update-time'>{{desc}}</text>
   </view>
-  <view class='chapter-name'>{{book.newestCatalogName}}</view>
+  <view class='chapter-name'>{{subTitle}}</view>
 </view>

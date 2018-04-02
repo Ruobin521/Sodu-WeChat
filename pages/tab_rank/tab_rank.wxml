@@ -1,5 +1,7 @@
 <!--pages/tab_rank/tab_rank.wxml-->
 <view id='root'>
-  <bookitem wx:for="{{books}}" book="{{item}}"   wx:key="{{item}}">
+  <!-- <loading  class="loading" style="display:{{isLoading ? 'block': 'none'}}"></loading> -->
+  <bookitem bindlongpress='longpress' data-book="{{item}}" wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}">
   </bookitem>
+ <options book="{{selectedBook}}"></options>
 </view>

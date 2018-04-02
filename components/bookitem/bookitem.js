@@ -7,6 +7,18 @@ Component({
       book: {        
         type: Object,
         value: null
+      },
+      title: {
+        type: String,
+        value: null
+      },
+      subTitle: {
+        type: String,
+        value: null
+      },
+      desc: {
+        type: String,
+        value: null
       }
   },
   /**

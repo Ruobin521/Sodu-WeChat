@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/tab_rank/tab_rank",
-    "pages/tab_shelf/tab_shelf",
     "pages/tab_search/tab_search",
+    "pages/tab_shelf/tab_shelf",
     "pages/tab_update/tab_update",
     "pages/tab_setting/tab_setting",
     "pages/chapter_page/chapter_page"
@@ -12,7 +12,7 @@
     "navigationBarBackgroundColor": "#0387FE",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "小说搜索阅读",
-    "backgroundColor": "#ff0000"
+    "backgroundColor": "#ffffff"
   },
   "tabBar": {
     "selectedColor": "#007aff",

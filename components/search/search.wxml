@@ -1,0 +1,10 @@
+<view class='search-container'>
+  <view class='search'>
+  <label for='search-input'>
+    <icon type='search'></icon>
+  </label>
+    <input class='search-input' focus='{{isFocus}}' bindblur='onBlur' bindfocus='onFocus' confirm-type='搜索' placeholder='请输入书名或关键字' bindinput='onInput' bindconfirm='onSearch' value='{{para}}'></input>
+    <!-- <icon class='clear' type='clear' catchtap='onClear' style="display:{{isFocus ? 'block': 'none'}}"></icon> -->
+  </view>
+  <view class='btn-search' catchtap='onCancle' style="display:{{isFocus ? 'block': 'none'}}">取消</view>
+</view>

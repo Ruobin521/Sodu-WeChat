@@ -2,5 +2,6 @@
   "usingComponents": {
     "bookitem": "../../components/bookitem/bookitem"
   },
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "最近更新"
 }

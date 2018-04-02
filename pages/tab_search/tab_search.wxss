@@ -1,1 +1,16 @@
 /* pages/tab_search/tab_search.wxss */
+
+
+
+.list {
+  position: absolute;
+  top: 80rpx;
+  width: 100%;
+}
+
+.no-reslut {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

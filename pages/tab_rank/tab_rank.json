@@ -1,6 +1,9 @@
 {
   "usingComponents": {
-    "bookitem": "../../components/bookitem/bookitem"
+    "bookitem": "../../components/bookitem/bookitem",
+    "loading": "../../components/loading/loading",
+    "options": "../../components/options/options"
   },
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "排行"
 }
