@@ -1,3 +1,6 @@
-<!--pages/tab_shelf/tab_shelf.wxml-->
-<button catchtap='navigateToChapter'>点击导航到chapter页面</button>
-<text>pages/tab_shelf/tab_shelf.wxml</text>
+<view id='root'>
+  <!-- <loading  class="loading" style="display:{{isLoading ? 'block': 'none'}}"></loading> -->
+  <shelfitem bindlongpress='longpress' data-book="{{item}}" wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}" >
+  </shelfitem>
+ <options book="{{selectedBook}}" isShelf="true" bindremove="refresh"></options>
+</view>

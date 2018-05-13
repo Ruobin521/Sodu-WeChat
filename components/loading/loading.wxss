@@ -1,12 +1,15 @@
 /* components/loading/loading.wxss */
 
-.root {
+.loading-root {
   height: 220rpx;
   width: 240rpx;
   background: rgba(0, 0, 0, 0.7);
-  position: relative;
+  position: fixed;
   text-align: center;
   border-radius: 18rpx;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
 }
 
 .loading {
@@ -14,10 +17,12 @@
   height: 128rpx;
   width: 128rpx;
   margin: 0 auto;
+  margin-top: 20rpx;
+  transform: scale(0.95)
 }
 
 .desc {
   font-size: 30rpx;
   color: #fff;
-  margin-top: 20rpx;
+  margin-top: 0rpx;
 }

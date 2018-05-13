@@ -1,5 +1,5 @@
  <view class='option-container' style='display:{{book ? "flex" : "none"}}' catchtap='hide'>
-    <view class='option' style='display:{{isShelf ? "" : "none"}}' >从书架移除</view>
-    <view class='option' style='display:{{!isShelf ? "" : "none"}}'>添加至书架</view>
+    <view class='option' catchtap='remove' style='display:{{isShelf ? "" : "none"}}' >从书架移除</view>
+    <view class='option' catchtap='add' style='display:{{!isShelf ? "" : "none"}}'>添加至书架</view>
     <view class='option bookname' data-bookid='{{book.bookId}}'>{{book.bookName}}</view>
   </view>

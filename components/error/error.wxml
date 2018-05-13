@@ -1,0 +1,5 @@
+<!--components/error/error.wxml-->
+
+<view class='root'>
+  <text>服务君打了个盹，等下再试一次吧~</text>
+</view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "bookitem": "../../components/bookitem/bookitem"
+    "bookitem": "../../components/bookitem/bookitem",
+    "error": "../../components/error/error"
   },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "最近更新"

@@ -3,7 +3,6 @@
 .bookitem-container {
   height: 120rpx;
   padding: 10rpx 35rpx 10rpx 35rpx;
-  /* border-top: 0.5rpx solid #dbdbdb;  */
   background: #fff;
   position: relative;
 }
@@ -12,11 +11,10 @@
    content: " ";
    position: absolute;
    left: 0;
-   top: 0;
+   bottom: 0;
    right: 0;
    height: 1px;
-   border-top: 1px solid #dbdbdb;
-   color: #dbdbdb;
+   border-bottom: 1px solid #dbdbdb;
    -webkit-transform-origin: 0 0;
    transform-origin: 0 0;
    -webkit-transform: scaleY(0.5);

@@ -4,18 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    title: {
-      type: String,
-      value: '',
-    },
-    time: {
-      type: String,
-      value: '',
-    },
-    subtitle: {
-      type: String,
-      value: '',
-    },
+    catalog: {
+      type: Object,
+      value: null,
+    }
   },
 
   /**
@@ -29,6 +21,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    navigateToReader: function (e) {
+      if (this.properties.catalog) {
+        let b = this.properties.catalog
+        console.log(b)
+        wx.navigateTo({
+          url: `../reader_page/reader_page?id=${b.bookId}&name=${b.bookName}&url=${b.catalogUrl}&cname=${b.catalogName}`
+        })
+      }
+    },
   }
 })

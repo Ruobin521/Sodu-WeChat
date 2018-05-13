@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "bookitem": "../../components/bookitem/bookitem",
-    "search": "../../components/search/search"
+    "search": "../../components/search/search",
+    "options": "../../components/options/options"
   },
   "navigationBarTitleText": "搜索"
 }

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "chapteritem": "../../components/chapteritem/chapteritem"
+    "chapteritem": "../../components/chapteritem/chapteritem",
+    "error": "../../components/error/error"
   }
 }

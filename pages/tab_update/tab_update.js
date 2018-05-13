@@ -6,7 +6,8 @@ Page({
    */
   data: {
     books: [],
-    isLoading: false
+    isLoading: false,
+    showError: false
   },
   toggleLoading: function (loading) {
     if (loading) {
@@ -42,7 +43,11 @@ Page({
         }
       },
       fail: function (res) {
-
+        if (that.data.books && that.data.books.length == 0) {
+          that.setData({
+            showError: true
+          })
+        }
       },
       complete(res) {
         that.toggleLoading(false)

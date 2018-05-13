@@ -1,0 +1,14 @@
+/* components/error/error.wxss */
+
+.root {
+  position: fixed;
+  height: 300rpx;
+  width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  z-index: 999;
+  color: #777777;
+  font-size: 32rpx;
+}

@@ -4,4 +4,5 @@
   <bookitem bindlongpress='longpress' data-book="{{item}}" wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}">
   </bookitem>
  <options book="{{selectedBook}}"></options>
+ <error wx:if="{{showError}}"></error>
 </view>

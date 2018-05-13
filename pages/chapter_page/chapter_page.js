@@ -11,7 +11,8 @@ Page({
     bookName: '',
     index: 1,
     isLoading: false,
-    totalPage:1
+    totalPage:1,
+    showError: false
   },
   toggleLoading: function (loading) {
     if (loading) {
@@ -37,6 +38,7 @@ Page({
       success: function (res) {
         var result = res.data
         if (result.code == 0) {
+          console.log(result)
           that.setData({
             chapters: index == 1 ? result.data : that.data.chapters.concat(result.data),
             index: index,
@@ -46,8 +48,18 @@ Page({
           console.log(res.data)
         }
       },
+      fail:function() {
+        if (that.data.chapters && that.data.chapters.length == 0) {
+          that.setData({
+            showError: true
+          })
+        }
+      },
       complete:function() {
         that.toggleLoading(false)
+        if (getCurrentPages()[getCurrentPages().length - 1].route.indexOf('chapter_page') == -1) {
+          return
+        }
         wx.setNavigationBarTitle({
           title: `${that.data.bookName} (${that.data.index}/${that.data.totalPage})`
         })

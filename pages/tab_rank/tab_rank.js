@@ -7,11 +7,12 @@ Page({
     books: [],
     index: 1,
     isLoading: false,
-    selectedBook: null
+    selectedBook: null,
+    showError: false
   },
   longpress(e) {
     this.setData({
-      selectedBook:e.target.dataset.book
+      selectedBook: e.target.dataset.book
     })
   },
   toggleLoading: function (loading) {
@@ -44,11 +45,18 @@ Page({
           console.log(res.data)
         }
       },
-      fail: function () {
-
+      fail: function (res) {
+        if (that.data.books && that.data.books.length == 0) {
+          that.setData({
+            showError: true
+          })
+        }
       },
       complete: function () {
         that.toggleLoading(false)
+        if (getCurrentPages()[getCurrentPages().length - 1].route.indexOf('tab_rank') == -1) {
+          return
+        }
         wx.setNavigationBarTitle({
           title: `排行 (${that.data.index}/8)`
         })
@@ -59,10 +67,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this)
     if (this.books && this.books.length > 0) {
       return
     }
     this.getDataByindex(1)
+  
+    // var pages = getCurrentPages();
+    // console.log
   },
 
   /**
@@ -76,7 +88,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    if (this.data.isLoading) {
+      wx.showNavigationBarLoading();
+    } else {
+      wx.hideNavigationBarLoading();
+    }
+    wx.setNavigationBarTitle({
+      title: `排行 (${that.data.index}/8)`
+    })
   },
 
   /**

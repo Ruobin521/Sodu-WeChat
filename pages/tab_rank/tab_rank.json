@@ -2,8 +2,9 @@
   "usingComponents": {
     "bookitem": "../../components/bookitem/bookitem",
     "loading": "../../components/loading/loading",
-    "options": "../../components/options/options"
+    "options": "../../components/options/options",
+    "error": "../../components/error/error"
   },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "排行"
-}
+  }

@@ -3,7 +3,21 @@ Page({
     books: [],
     isLoading: false,
     para: '',
-    isNoResult:false
+    isNoResult:false,
+    selectedBook: null
+  },
+  longpress(e) {
+    this.setData({
+      selectedBook: e.target.dataset.book
+    })
+  },
+  refresh() {
+    wx.showToast({
+      title: '移除成功',
+      icon: 'success',
+      duration: 1000
+    })
+    this.getData()
   },
   toggleLoading: function (loading) {
     var that = this

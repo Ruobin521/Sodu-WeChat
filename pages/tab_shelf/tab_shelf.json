@@ -1,4 +1,9 @@
 {
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "个人书架"
+  "navigationBarTitleText": "个人书架",
+  "backgroundColor" : "#eeeeee",
+  "usingComponents": {
+    "shelfitem": "../../components/shelfitem/shelfitem",
+    "options": "../../components/options/options"
+  }
 }

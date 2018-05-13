@@ -15,10 +15,10 @@
 
 .option-container .option {
   width: 100%;
-  height: 80rpx;
+  height: 110rpx;
   background: white;
   border-top: 1rpx solid #a3a3a3;
-  line-height: 80rpx;
+  line-height: 110rpx;
   font-size: 32rpx;
   font-weight: 300;
 }

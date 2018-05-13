@@ -1,4 +1,5 @@
 <view id='root'>
   <bookitem wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}">
   </bookitem>
+  <error wx:if="{{showError}}"></error>
 </view>

@@ -1,4 +1,5 @@
-// components/options/options.js
+const storage = require('../../utils/shelfstorage.js')
+
 Component({
   /**
    * 组件的属性列表
@@ -9,8 +10,8 @@ Component({
       value: null,
     },
     isShelf: {
-      type:Boolean,
-      value:false
+      type: Boolean,
+      value: false
     }
   },
   /**
@@ -28,6 +29,15 @@ Component({
       this.setData({
         book: null
       })
+    },
+    remove() {
+      storage.removeBook(this.data.book.bookId)
+      this.triggerEvent('remove')
+      this.hide() 
+    },
+    add() {
+      storage.addBook(this.data.book)
+      this.hide() 
     }
   }
 })

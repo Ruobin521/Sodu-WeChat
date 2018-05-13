@@ -1,8 +1,8 @@
 <!--components/bookitem/bookitem.wxml-->
-<view class='container'>
-  <view class='chapter-name'>{{title}}</view>
+<view class='container'  bindtap='navigateToReader'>
+  <view class='chapter-name'>{{catalog.catalogName}}</view>
   <view class='bottom'>
-    <view class='lywz'>{{subtitle}}</view>
-    <text class='update-time'>{{time}}</text>
+    <view class='lywz'>{{catalog.lyWeb}}</view>
+    <text class='update-time'>{{catalog.updateTime}}</text>
   </view>
 </view>

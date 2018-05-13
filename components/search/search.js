@@ -41,7 +41,6 @@ Component({
       })
     },
     onSearch() {
-      console.log(this.data)
       this.triggerEvent('search', { para: this.data.para })
     },
     onCancle() {

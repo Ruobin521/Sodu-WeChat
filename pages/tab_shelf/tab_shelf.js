@@ -1,11 +1,32 @@
-// pages/tab_shelf/tab_shelf.js
+import storage from '../../utils/shelfstorage.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    books:[],
+    selectedBook:null
+  },
+  longpress(e) {
+    this.setData({
+      selectedBook: e.target.dataset.book
+    })
+  },
+  refresh() {
+    wx.showToast({
+      title: '移除成功',
+      icon: 'success',
+      duration: 1000
+    })
+    this.getData()
+  },
+  getData() {
+    let data = storage.getShelfBooks()
+    this.setData({
+      books: data
+    })
   },
   //事件处理函数
   navigateToChapter: function (data) {
@@ -17,7 +38,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+   
   },
 
   /**
@@ -31,7 +52,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getData()
   },
 
   /**
@@ -52,7 +73,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    wx.stopPullDownRefresh()
+    wx.showNavigationBarLoading();
+    setTimeout(function() {
+      wx.hideNavigationBarLoading();
+    },3000)
   },
 
   /**
