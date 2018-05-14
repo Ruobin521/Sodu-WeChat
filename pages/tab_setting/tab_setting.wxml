@@ -1,2 +1,27 @@
 <!--pages/tab_setting/tab_setting.wxml-->
-<text>pages/tab_setting/tab_setting.wxml</text>
+<view class='root'>
+  <view class='switch-container'>
+    <view class="switch-item">
+       <image class='icon' src='../../images/setting/addbook2@3x.png'></image>
+      <view class="switch-item-title">自动添加至书架</view>
+      <view class="switch-item_ft">
+        <switch class='switch' checked="{{settings.autoAddToShelf}}" bindchange="addShelf" />
+      </view>
+    </view>
+  </view>
+
+  <view class='navigator-container'>
+    <view class="navigator">
+       <image class='icon' src='../../images/setting/history@3x.png'></image>
+      <view class="navigator-text">历史记录</view>
+      <view class="navigator-arrow"></view>
+    </view>
+
+    <navigator class="navigator" url="../../pages/mzsm_page/mzsm">
+       <image class='icon' src='../../images/setting/mzsm@3x.png'></image>
+      <view class="navigator-text">免责声明</view>
+      <view class="navigator-arrow"></view>
+    </navigator>
+  </view>
+
+</view>

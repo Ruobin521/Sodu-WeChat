@@ -49,7 +49,6 @@ Page({
       url: `https://sodu.ruobin521.com/search?para=${para}`,
       success: function (res) {
         var result = res.data
-        console.log(result)
         if (result.code == 0) {
           that.setData({
             books: result.data

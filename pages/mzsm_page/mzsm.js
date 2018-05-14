@@ -1,84 +1,66 @@
-// pages/tab_setting/tab_setting.js
-const constant = require('../../utils/constant.js')
-const setting = require('../../utils/settingStorage.js')
-
+// pages/mzsm_page/mzsm.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    settings: null
+  
   },
-  addShelf(e) {
-    let that = this
-    that.setData({
-      settings: Object.assign({}, that.data.settings, {
-        autoAddToShelf: e.detail.value
-      })
-    })
-    setting.writeTabSetting(this.data.settings)
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let defaultSetting = constant.defaultSetting
-    let value = setting.readTabSetting()
-    if (!value) {
-      value = defaultSetting
-    }
-    this.setData({
-      settings: value
-    })
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+  
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+  
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+  
   }
 })

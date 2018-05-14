@@ -24,9 +24,8 @@ Component({
     navigateToReader: function (e) {
       if (this.properties.catalog) {
         let b = this.properties.catalog
-        console.log(b)
         wx.navigateTo({
-          url: `../reader_page/reader_page?id=${b.bookId}&name=${b.bookName}&url=${b.catalogUrl}&cname=${b.catalogName}`
+          url: `../reader_page/reader_page?id=${b.bookId}&name=${b.bookName}&url=${b.catalogUrl}&cname=${b.catalogName}&type=0`
         })
       }
     },

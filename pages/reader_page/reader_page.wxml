@@ -1,43 +1,48 @@
-<view class='root' bindtap='toggleMenu'>
+<view class='root' bindtap='toggleMenu' style="background:{{pageStyle.background}};color:{{pageStyle.color}};font-size:{{pageStyle.fontSize}}rpx;line-height:{{pageStyle.lineHeight}}rpx">
 
   <!-- 设置相关 -->
+ 
   <view class='setting'>
-    <view class='setting-panel' wx:if="{{showSettingPanel}}" catchtap='catchEmptyTap'>
+    <view class='setting-panel {{animationClass}}' catchtap='catchEmptyTap'>
+      <view class='setting-section'>
+        <text class='desc'>字体：</text>
+        <view class='settting-btn ' catchtap='settingEvent' data-event='fontMint'>Aa-</view>
+        <view class='settting-btn ' catchtap='settingEvent' data-event='fontAdd'>Aa+</view>
+        <view class='setting-text'>{{pageStyle.fontSize}}</view>
+      </view>
+      <view class='setting-section'>
+        <text class='desc'>亮度：</text>
+        <slider class='slider' value='{{light}}' bindchanging="settingEvent" data-event='light' block-size="18" min="0" max="100" activeColor="#0387FE" step="1" show-value />
+      </view>
+      <view class='setting-section'>
+        <view class='desc'>颜色：</view>
+        <view catchtap='settingEvent' data-event='color' data-color="{{item}}" class='color-item' wx:for="{{colors}}" wx:key="{{item}}" style='background:{{item.backColor}}'>
+        </view>
+      </view>
+      <view class='setting-section'>
+        <view class='settting-btn '>上一章</view>
+        <view class='settting-btn '>目录</view>
+        <view class='settting-btn '>下一章</view>
+        <view class='settting-btn ' wx:if="{{book.bookType === '0'}}">更新源</view>
+      </view>
     </view>
-    <view class='bottom_bar' wx:if="{{showMenu}}" catchtap='catchEmptyTap'>
-      <view class='menu-item'>
-        <image src='../../images/reader/moonlight.png'></image>
-        <text>夜间</text>
-      </view>
-      <view class='menu-item'>
-        <image src='../../images/reader/mulu.png'></image>
-        <text>目录</text>
-      </view>
-      <view class='menu-item' catchtap='toggleSettingPanel'>
-        <image src='../../images/reader/setting.png'></image>
-        <text>设置</text>
-      </view>
-    </view>
+    <view class='addShelf {{animationAddBtnClass}}' >加入书架</view>
   </view>
 
   <!-- 内容区域 -->
-  <view class='content'>
-    <view class='catalog-info'>
-      <view>{{currentCatalog.catalogName}} </view>
-    </view>
-    <scroll-view class='content-container' scroll-y="true">
-      <view class='html'>
-        <!-- <view class='item'></view> -->
-        <text>  {{currentCatalog.content}}  </text>
-      </view>
-
-      <view class='catalog-options' catchtap='catchEmptyTap'>
-        <button catchtap="catalogSwitch" data-type="-1">上一章</button>
-        <button catchtap="catalogSwitch" data-type="0">目录</button>
-        <button catchtap="catalogSwitch" data-type="1">下一章</button>
-      </view>
-    </scroll-view>
+  <view class='catalog-info'>
+    <view>{{currentCatalog.catalogName}} </view>
   </view>
+  <scroll-view class='scroll' scroll-y="true" bindscroll="scroll">
+    <view class='content-container'>
+      <text>  {{currentCatalog.content}}  </text>
+    </view>
+    <view class='catalog-options' catchtap='catchEmptyTap'>
+      <button catchtap="catalogSwitch" data-type="-1">上一章</button>
+      <button catchtap="catalogSwitch" data-type="0">目录</button>
+      <button catchtap="catalogSwitch" data-type="1">下一章</button>
+    </view>
+  </scroll-view>
 
   <loading wx:if="{{isLoading}}"></loading>
 </view>

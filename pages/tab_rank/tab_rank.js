@@ -39,7 +39,8 @@ Page({
         if (result.code == 0) {
           that.setData({
             books: pageIndex == 1 ? result.data : that.data.books.concat(result.data),
-            index: pageIndex
+            index: pageIndex,
+            showError: false
           })
         } else {
           console.log(res.data)
@@ -67,14 +68,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this)
     if (this.books && this.books.length > 0) {
       return
     }
     this.getDataByindex(1)
-  
-    // var pages = getCurrentPages();
-    // console.log
   },
 
   /**
@@ -97,6 +94,11 @@ Page({
     wx.setNavigationBarTitle({
       title: `排行 (${that.data.index}/8)`
     })
+
+    if (this.data.books && this.data.books.length > 0) {
+      return
+    }
+    this.getDataByindex(1)
   },
 
   /**

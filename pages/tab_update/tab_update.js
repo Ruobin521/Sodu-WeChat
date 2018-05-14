@@ -23,8 +23,7 @@ Page({
     }
   },
   getData() {
-
-    if (this.isLoading) {
+    if (this.data.isLoading) {
       return
     }
     this.toggleLoading(true)
@@ -34,9 +33,9 @@ Page({
       success: function (res) {
         var result = res.data
         if (result.code == 0) {
-          console.log(res.data)
           that.setData({
-            books: result.data
+            books: result.data,
+            showError: false
           })
         } else {
           console.log(res.data)
@@ -58,10 +57,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (this.books && this.books.length > 0) {
-      return
-    }
-    this.getData()
+
   },
 
   /**
@@ -75,7 +71,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (this.data.isLoading) {
+      wx.showNavigationBarLoading();
+    } else {
+      wx.hideNavigationBarLoading();
+    }
+    
+    if (this.data.books && this.data.books.length > 0) {
+      return
+    }
+    this.getData()
   },
 
   /**

@@ -1,0 +1,6 @@
+/* pages/mzsm_page/mzsm.wxss */
+.content {
+   font-size: 30rpx;
+   padding: 30rpx;
+   line-height: 60rpx;
+}

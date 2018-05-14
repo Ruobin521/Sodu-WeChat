@@ -38,7 +38,6 @@ Page({
       success: function (res) {
         var result = res.data
         if (result.code == 0) {
-          console.log(result)
           that.setData({
             chapters: index == 1 ? result.data : that.data.chapters.concat(result.data),
             index: index,

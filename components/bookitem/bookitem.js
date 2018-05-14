@@ -1,31 +1,34 @@
 // components/bookitem/bookitem.js
+const setting = require('../../utils/settingStorage.js')
+const storage = require('../../utils/shelfstorage.js')
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-      book: {        
-        type: Object,
-        value: null
-      },
-      title: {
-        type: String,
-        value: null
-      },
-      subTitle: {
-        type: String,
-        value: null
-      },
-      desc: {
-        type: String,
-        value: null
-      }
+    book: {
+      type: Object,
+      value: null
+    },
+    title: {
+      type: String,
+      value: null
+    },
+    subTitle: {
+      type: String,
+      value: null
+    },
+    desc: {
+      type: String,
+      value: null
+    }
   },
   /**
    * 组件的初始数据
    */
   data: {
-
+    
   },
 
   /**
@@ -35,6 +38,9 @@ Component({
     navigateToChapter: function (e) {
       if (this.properties.book) {
         let b = this.properties.book
+        if (setting.readTabSetting().autoAddToShelf) {
+          storage.addBook(b)
+        }
         wx.navigateTo({
           url: `../chapter_page/chapter_page?id=${b.bookId}&name=${b.bookName}`
         })
