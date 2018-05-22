@@ -3,7 +3,7 @@
   <!-- 设置相关 -->
  
   <view class='setting'>
-    <view class='setting-panel {{animationClass}}' catchtap='catchEmptyTap'>
+    <view class='setting-panel {{animationSettingClass}}' catchtap='catchEmptyTap'>
       <view class='setting-section'>
         <text class='desc'>字体：</text>
         <view class='settting-btn ' catchtap='settingEvent' data-event='fontMint'>Aa-</view>
@@ -20,13 +20,13 @@
         </view>
       </view>
       <view class='setting-section'>
-        <view class='settting-btn '>上一章</view>
-        <view class='settting-btn '>目录</view>
-        <view class='settting-btn '>下一章</view>
-        <view class='settting-btn ' wx:if="{{book.bookType === '0'}}">更新源</view>
+        <view class='settting-btn ' catchtap="catalogSwitch" data-type="-1">上一章</view>
+        <view class='settting-btn ' catchtap="catalogSwitch" data-type="0">目录</view>
+        <view class='settting-btn ' catchtap="catalogSwitch" data-type="1">下一章</view>
+        <view class='settting-btn ' catchtap="catalogSwitch" data-type="2" wx:if="{{book.type === 0}}">更新源</view>
       </view>
     </view>
-    <view class='addShelf {{animationAddBtnClass}}' >加入书架</view>
+    <view class='addShelf {{animationAddBtnClass}}' catchtap='addToShelf'>{{shelfText}}</view>
   </view>
 
   <!-- 内容区域 -->
@@ -43,6 +43,9 @@
       <button catchtap="catalogSwitch" data-type="1">下一章</button>
     </view>
   </scroll-view>
+
+<!-- 目录 -->
+  <catalogs bindcatalogItemClick='catalogItemClick' showClass="{{animationCatalogsClass}}" background="{{pageStyle.background}}" catalogData='{{catalogData}}'  book='{{book}}'></catalogs>
 
   <loading wx:if="{{isLoading}}"></loading>
 </view>

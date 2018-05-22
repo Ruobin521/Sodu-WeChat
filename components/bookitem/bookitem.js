@@ -1,6 +1,7 @@
 // components/bookitem/bookitem.js
 const setting = require('../../utils/settingStorage.js')
 const storage = require('../../utils/shelfstorage.js')
+const currentBook = require('../../utils/currentBook.js')
 
 Component({
   /**
@@ -28,7 +29,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -38,7 +39,8 @@ Component({
     navigateToChapter: function (e) {
       if (this.properties.book) {
         let b = this.properties.book
-        if (setting.readTabSetting().autoAddToShelf) {
+        currentBook.writeCurrentBook(b)
+        if (setting.readTabSetting() && setting.readTabSetting().autoAddToShelf) {
           storage.addBook(b)
         }
         wx.navigateTo({

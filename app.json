@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/reader_page/reader_page",
-    "pages/tab_setting/tab_setting",
+    "pages/tab_shelf/tab_shelf",
     "pages/mzsm_page/mzsm",
     "pages/tab_rank/tab_rank",
-    "pages/tab_shelf/tab_shelf",
     "pages/tab_search/tab_search",
     "pages/tab_update/tab_update",
-    "pages/chapter_page/chapter_page"
+    "pages/chapter_page/chapter_page",
+    "pages/reader_page/reader_page",
+    "pages/tab_setting/tab_setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

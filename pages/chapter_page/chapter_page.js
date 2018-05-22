@@ -41,7 +41,8 @@ Page({
           that.setData({
             chapters: index == 1 ? result.data : that.data.chapters.concat(result.data),
             index: index,
-            totalPage: result.totalPage
+            totalPage: result.totalPage,
+            showError: false
           })
         } else {
           console.log(res.data)

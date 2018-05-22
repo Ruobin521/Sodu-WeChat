@@ -11,11 +11,6 @@
   </view>
 
   <view class='navigator-container'>
-    <view class="navigator">
-       <image class='icon' src='../../images/setting/history@3x.png'></image>
-      <view class="navigator-text">历史记录</view>
-      <view class="navigator-arrow"></view>
-    </view>
 
     <navigator class="navigator" url="../../pages/mzsm_page/mzsm">
        <image class='icon' src='../../images/setting/mzsm@3x.png'></image>

@@ -1,0 +1,30 @@
+<!--components/catalogs/catalogs.wxml-->
+<view class='root {{showClass}}' style='background:{{background}}'>
+  <scroll-view scroll-y class='scroll'>
+    <view class='header'>
+      <view class='info'>
+        <image src='{{catalogData.cover ? catalogData.cover : "../../images/common/cover1_s2.png"}}'> </image>
+        <view class='title'>
+          <view>{{book.bookName}}</view>
+          <view>作者：{{catalogData.author}}</view>
+          <view>来源：{{catalogData.lyWeb}}</view>
+        </view>
+      </view>
+      <view class='intro'>
+        <view>简介</view>
+        <text>{{catalogData.intro}}</text>
+      </view>
+    </view>
+
+    <view class='list'>
+      <view wx:for='{{catalogData.catalogs}}' class='list-item' wx:for-index="index" wx:for-item="item" wx:key='{{index}}' data-item='{{item}}' catchtap='itemClick'>
+        <view class='list-item-index'>{{index + 1}}</view>
+        <view class='list-item-text'> {{item.catalogName}}</view>
+        <view class="navigator-arrow"></view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='close'>
+    <image catchtap='hide' src='../../images/reader/close.png'></image>
+  </view>
+</view>

@@ -7,6 +7,8 @@
   <view class='book-info'>
     <view class='header'>
       <text class='book-name'>{{book.bookName}}</text>
+      <view class='new' wx:if='{{book.hasNew}}'>
+      <image src='../../images/common/new.png'></image></view>
       <text class='update-time'>{{book.updateTime}}</text>
     </view>
     <view class='chapter-name'>{{book.newestCatalogName}}</view>

@@ -3,6 +3,16 @@ const key = 'bookshelf'
 
 function addBook(book) {
   var obj = getBooksObj()
+
+  if (Object.keys(obj).length >= 30) {
+    wx.showToast({
+      title: '由于存储空间限制，最多添加30本至书架',
+      icon: 'none',
+      duration: 2000
+    })
+    return
+  }
+
   var item = Object.assign({ time: (+ new Date()) }, { data: book })
   obj[book.bookId] = item
 
@@ -20,6 +30,7 @@ function removeBook(bookid) {
 
 function getBooksObj() {
   let data = wx.getStorageSync(key)
+
   if (!data) {
     return {}
   } else {
@@ -44,8 +55,42 @@ function getShelfBooks() {
   return books
 }
 
+function checkExist(id) {
+  let result = false
+  let books = getShelfBooks()
+  if (!books || books.length == 0) {
+    return false
+  }
+  books.forEach((item, index) => {
+    if (item.bookId == id) {
+      result = true
+    }
+  })
+  return result
+}
+
+function UpdateBooks(books) {
+  var obj = getBooksObj()
+  books.forEach(element => {
+    var item = Object.assign({ time: obj[element.bookId].time }, { data: element })
+    obj[element.bookId] = item
+  })
+  wx.setStorageSync(key, obj)
+}
+
+function UpdateBook(book) {
+  var obj = getBooksObj()
+  var item = Object.assign({ time: (+ new Date()) }, { data: book })
+  obj[book.bookId] = item
+  wx.setStorageSync(key, obj)
+}
+
+
 module.exports = {
   addBook,
   removeBook,
-  getShelfBooks
+  getShelfBooks,
+  checkExist,
+  UpdateBooks,
+  UpdateBook
 }

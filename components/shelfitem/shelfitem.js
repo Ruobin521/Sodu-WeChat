@@ -1,3 +1,6 @@
+const currentBook = require('../../utils/currentBook.js')
+import storage from '../../utils/shelfstorage.js'
+
 Component({
   /**
    * 组件的属性列表
@@ -22,6 +25,8 @@ Component({
     navigateToChapter: function (e) {
       if (this.properties.book) {
         let b = this.properties.book
+        currentBook.writeCurrentBook(b)
+        this.triggerEvent('ItemClick', b)
         wx.navigateTo({
           url: `../chapter_page/chapter_page?id=${b.bookId}&name=${b.bookName}`
         })

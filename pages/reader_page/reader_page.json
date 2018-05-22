@@ -2,6 +2,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "loading": "../../components/loading/loading",
-    "error": "../../components/error/error"
+    "error": "../../components/error/error",
+    "catalogs": "../../components/catalogs/catalogs"
   }
 }

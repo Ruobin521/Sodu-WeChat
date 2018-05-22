@@ -41,11 +41,15 @@
   transform: translateX(-50%) translateY(10%);
   font-size: 30rpx;
   overflow: hidden;
-  color: #999999;
+  color: #999;
 }
 
 .book-info {
   flex: 1;
+  word-break: keep-all; /* 不换行 */
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }
 
 .bookitem-container:before {
@@ -66,8 +70,19 @@
   display: flex;
 }
 
+.new {
+  box-sizing: border-box;
+  height: 60rpx;
+}
+
+.new image {
+  height: 55rpx;
+  width: 55rpx;
+  margin-left: 10rpx;
+  box-sizing: border-box;
+}
+
 .book-name {
-  flex: 1;
   font-size: 34rpx;
   color: #3a3a3a;
   line-height: 60rpx;
@@ -79,13 +94,17 @@
 }
 
 .update-time {
+  flex: 1;
   font-size: 26rpx;
   line-height: 60rpx;
   color: #909090;
   font-weight: 300;
+  text-align: right;
 }
 
 .chapter-name {
+  display: flex;
+  flex: 1;
   font-size: 28rpx;
   line-height: 60rpx;
   color: #888;

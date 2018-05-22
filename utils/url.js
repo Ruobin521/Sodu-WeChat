@@ -13,6 +13,12 @@ const url = {
 
   content: function () {
     return 'https://sodu.ruobin521.com/content'
+  },
+  catalogs: function () {
+    return 'https://sodu.ruobin521.com/content/catalogs'
+  },
+  checkUpdate: function () {
+    return 'https://sodu.ruobin521.com/shelf/check'
   }
 }
 

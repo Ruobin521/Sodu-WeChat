@@ -47,15 +47,15 @@
   bottom: 0rpx;
   background: rgba(25, 25, 25, 0.95);
   z-index: 99;
-   transform: translateY(100%); 
+  transform: translateY(100%);
 }
 
 .showPanel {
-  animation: show 300ms forwards;
+  animation: showSetting 300ms forwards;
 }
 
 .hidePanel {
-  animation: hide 300ms forwards;
+  animation: hideSetting 300ms forwards;
 }
 
 .addShelf {
@@ -66,13 +66,13 @@
   right: 0;
   background: rgba(25, 25, 25, 0.95);
   z-index: 99;
-  border-radius: 38rpx  0 0 38rpx  ;
+  border-radius: 38rpx 0 0 38rpx;
   font-size: 26rpx;
   color: #e6e6e6;
   line-height: 76rpx;
   text-align: center;
   padding-left: 15rpx;
-  transform: translateX(100%)
+  transform: translateX(100%);
 }
 
 .showAddBtn {
@@ -186,7 +186,9 @@
   background: #e6e6e6;
 }
 
-@keyframes show {
+ 
+
+@keyframes showSetting {
   from {
     transform: translateY(100%);
   }
@@ -196,7 +198,7 @@
   }
 }
 
-@keyframes hide {
+@keyframes hideSetting {
   from {
     transform: translateY(0);
   }

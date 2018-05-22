@@ -1,0 +1,148 @@
+/* components/catalogs/catalogs.wxss */
+
+.root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+   transform: translateX(100%);  
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+.scroll {
+  height: 100%;
+  width: 100%; 
+  padding-bottom: 100rpx;
+}
+
+.showCatalogs {
+  animation: show 300ms forwards;
+}
+
+.hideCatalogs {
+  animation: hide 300ms forwards;
+}
+
+.header {
+  padding: 20rpx 30rpx;
+  position: relative;
+}
+
+.header:after {
+  content: " ";
+  position: absolute;
+  height: 1rpx;
+  width: 100%;
+  bottom: 0;
+  left: 0rpx;
+  border-bottom: 1rpx solid rgba(22, 22, 22, 0.2);
+}
+
+.header .info {
+  display: flex;
+}
+
+.header image {
+  display: block;
+  height: 180rpx;
+  width: 130rpx;
+  margin-right: 40rpx;
+}
+
+.header .title {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.header .intro {
+  font-size: 28rpx;
+}
+
+.list-item {
+  display: flex;
+  font-size: 28rpx;
+  padding: 0 30rpx;
+  position: relative;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.list-item:after {
+  content: " ";
+  position: absolute;
+  height: 1rpx;
+  width: 100%;
+  bottom: 0;
+  left: 30rpx;
+  border-bottom: 1rpx solid rgba(22, 22, 22, 0.2);
+}
+
+.list-item-index {
+  width: 50rpx;
+  margin-right: 20rpx;
+}
+
+.list-item-text {
+  flex: 1;
+}
+
+.navigator-arrow {
+  padding-right: 26rpx;
+  position: relative;
+}
+
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 30rpx;
+}
+
+.close {
+  height: 100rpx;
+  width: 100%;
+  /* background: white; */
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  margin-top: -100rpx;
+}
+
+.close image {
+  display: block;
+  height: 65rpx;
+  width: 65rpx;
+}
+
+@keyframes show {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
