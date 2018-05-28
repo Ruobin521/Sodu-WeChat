@@ -1,6 +1,6 @@
 // pages/tab_setting/tab_setting.js
 const constant = require('../../utils/constant.js')
-const setting = require('../../utils/settingStorage.js')
+const setting = require('../../storage/settingStorage.js')
 
 Page({
 
@@ -12,10 +12,17 @@ Page({
   },
   addShelf(e) {
     let that = this
+    let add = 'settings.autoAddToShelf'
     that.setData({
-      settings: Object.assign({}, that.data.settings, {
-        autoAddToShelf: e.detail.value
-      })
+        [add]: e.detail.value
+    })
+    setting.writeTabSetting(this.data.settings)
+  },
+  directRead(e) {
+    let that = this
+    let read = 'settings.directRead'
+    that.setData({
+      [read]: e.detail.value
     })
     setting.writeTabSetting(this.data.settings)
   },

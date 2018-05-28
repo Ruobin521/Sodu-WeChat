@@ -1,9 +1,9 @@
 // pages/reader_page/reader_page.js
 const url = require('../../utils/url.js')
-const setting = require('../../utils/settingStorage.js')
+const setting = require('../../storage/settingStorage.js')
 const constant = require('../../utils/constant.js')
-const storage = require('../../utils/shelfstorage.js')
-const currentBook = require('../../utils/currentBook.js')
+const storage = require('../../storage/shelfstorage.js')
+const currentBook = require('../../storage/currentBook.js')
 const addBookText = '加入书架'
 const removeBookText = '移出书架'
 
@@ -77,7 +77,7 @@ Page({
 
       let catalog = this.data.catalogData.catalogs[this.data.currentCatalog.index - 1]
       let currenCatalog = this.data.currentCatalog
-      var temp = {
+      let temp = {
         index: catalog.index,
         bookName: currenCatalog.bookName,
         bookId: currenCatalog.bookId,
@@ -104,7 +104,7 @@ Page({
 
       let catalog = this.data.catalogData.catalogs[this.data.currentCatalog.index + 1]
       let currenCatalog = this.data.currentCatalog
-      var temp = {
+      let temp = {
         index: catalog.index,
         bookName: currenCatalog.bookName,
         bookId: currenCatalog.bookId,
@@ -129,7 +129,7 @@ Page({
   },
   catalogItemClick(e) {
     this.toggleCatalogs(false)
-    var catalog = Object.assign({}, this.data.currentCatalog, e.detail)
+    let catalog = Object.assign({}, this.data.currentCatalog, e.detail)
     this.getHtmlByCatalog(catalog)
   },
   /**
@@ -137,6 +137,9 @@ Page({
    */
   onLoad: function (options) {
     this.loadSettingStorage()
+    this.setData({
+      book: currentBook.getCurrentBook()
+    })
     this.setData({
       currentCatalog: {
         index: -1,
@@ -155,7 +158,7 @@ Page({
   loadSettingStorage() {
     let that = this
 
-    var settings = setting.readReaderSetting()
+    let settings = setting.readReaderSetting()
 
     if (!settings) {
       settings = constant.defaultStyle
@@ -181,6 +184,19 @@ Page({
       currentCatalog: catalog,
       isLoading: true
     })
+    // { "type":0, "id":"", "bookName":"圣墟", "bookId":"430385", "newestCatalogName":"第1064章 轮回审判", "newestCatalogUrl":"", "lastReadCatalogName":"", "lastReadCatalogUrl":"", "updateTime":"2018/05/24 03:57", "author":"", "cover":"", "description":"", "lyWeb":"", "updatePageUrl":"http://www.sodu.cc/mulu_430385.html", "hasNew":true, "IsHistory":false, "cataloglist":[] }
+
+    let ustr1 = 'book.lastReadCatalogName'
+    let ustr2 = 'book.lastReadCatalogUrl'
+    this.setData({
+      [ustr1]: catalog.catalogName,
+      [ustr2]: catalog.catalogUrl
+    })
+    currentBook.updateBook(this.data.book)
+    let inShelf = storage.checkExist(this.data.book.bookId)
+    if(inShelf) {
+      storage.UpdateBook(this.data.book)
+    }
     let that = this
     wx.request({
       url: url.content(),
@@ -269,10 +285,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      book: currentBook.getCurrentBook()
-    })
-    var inShelf = storage.checkExist(this.data.book.bookId)
+   
+    let inShelf = storage.checkExist(this.data.book.bookId)
     this.setData({
       shelfText: inShelf ? removeBookText : addBookText
     })

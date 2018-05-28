@@ -1,6 +1,6 @@
 <!--components/catalogs/catalogs.wxml-->
 <view class='root {{showClass}}' style='background:{{background}}'>
-  <scroll-view scroll-y class='scroll'>
+  <scroll-view scroll-y class='scroll' scroll-top="{{scrollTop}}">
     <view class='header'>
       <view class='info'>
         <image src='{{catalogData.cover ? catalogData.cover : "../../images/common/cover1_s2.png"}}'> </image>
@@ -25,6 +25,10 @@
     </view>
   </scroll-view>
   <view class='close'>
-    <image catchtap='hide' src='../../images/reader/close.png'></image>
+    <view class='top' catchtap='toTop'>到顶部</view>
+    <view class='btnClose'>
+      <image catchtap='hide' src='../../images/reader/close.png'></image>
+    </view>
+    <view class='bottom' catchtap='toBottom'>到底部</view>
   </view>
 </view>

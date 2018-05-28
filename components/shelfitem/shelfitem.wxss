@@ -8,6 +8,12 @@
   display: flex;
 }
 
+.checkbox {
+  margin-top: 30rpx;
+  margin-right: 10rpx;
+  transform: scale(0.9)
+}
+
 .cover-container {
   height: 120rpx;
   width: 90rpx;

@@ -1,14 +1,17 @@
-<view class='bookitem-container' bindtap='navigateToChapter'>
-<view class='cover-container'>
- <image class='default-cover' src='../../images/common/cover1_s2.png'></image>
- <image class='book-cover' src=''></image>
- <!-- <view class='sub-title'>{{book.bookName}}</view> -->
-</view>
+<view class='bookitem-container'>
+  <view wx:if='{{book.isEdit}}'>
+    <checkbox class='checkbox'  checked="{{book.isChecked}}"></checkbox>
+  </view>
+  <!-- <view class='cover-container'>
+    <image class='default-cover' src='../../images/common/cover1_s2.png'></image>
+    <image class='book-cover' src=''></image>
+  </view> -->
   <view class='book-info'>
     <view class='header'>
       <text class='book-name'>{{book.bookName}}</text>
       <view class='new' wx:if='{{book.hasNew}}'>
-      <image src='../../images/common/new.png'></image></view>
+        <image src='../../images/common/new.png'></image>
+      </view>
       <text class='update-time'>{{book.updateTime}}</text>
     </view>
     <view class='chapter-name'>{{book.newestCatalogName}}</view>

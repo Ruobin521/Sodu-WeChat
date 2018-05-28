@@ -19,6 +19,10 @@ Component({
     showClass: {
       type: String,
       value: ''
+    },
+    scrollTop: { 
+      type: Number,
+      value: 0
     }
   },
 
@@ -44,6 +48,20 @@ Component({
       // let catalog = e
       var catalog = e.currentTarget.dataset.item
       this.triggerEvent('catalogItemClick',catalog)
+    },
+    toTop() {
+      this.setData({
+        scrollTop: 0
+      })
+    }, 
+    toBottom() {
+      if (!this.properties.catalogData || !this.properties.catalogData.catalogs) {
+        return
+      }
+      let length = this.properties.catalogData.catalogs.length
+      this.setData({
+        scrollTop: 100 * length
+      })
     }
   }
 })

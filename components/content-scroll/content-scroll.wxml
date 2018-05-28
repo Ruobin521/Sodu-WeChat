@@ -1,0 +1,10 @@
+ <scroll-view class='scroll' scroll-y="true" bindscroll="scroll">
+    <view class='content-container'>
+      <view>  {{currentCatalog.content}}  </view>
+    </view>
+    <view class='catalog-options' catchtap='catchEmptyTap'>
+      <button catchtap="catalogSwitch" data-type="-1">上一章</button>
+      <button catchtap="catalogSwitch" data-type="0">目录</button>
+      <button catchtap="catalogSwitch" data-type="1">下一章</button>
+    </view>
+  </scroll-view>

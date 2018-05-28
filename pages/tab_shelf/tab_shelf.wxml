@@ -1,6 +1,16 @@
 <view id='root'>
   <!-- <loading  class="loading" style="display:{{isLoading ? 'block': 'none'}}"></loading> -->
-  <shelfitem bindlongpress='longpress'  bindItemClick="onItemClick" data-book="{{item}}" wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}" >
+  <shelfitem bindlongpress='longpress' bindtap='navigateToChapter' data-index='{{index}}' data-book="{{item}}" wx:for="{{books}}" book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="{{item.updateTime}}" wx:key="{{item}}">
   </shelfitem>
- <options book="{{selectedBook}}" isShelf="true" bindremove="refresh"></options>
+  <options book="{{selectedBook}}" isShelf="true" bindremove="refresh"></options>
+  <view class='empty' wx:if="{{!books || books.length == 0}}">您的书架空空如也，去排行榜看看吧，长按即可添加至书架~</view>
+
+  <view class='edit-container' wx:if='{{books && books.length > 0}}'>
+    <image class='edit-container-icon' src='../../images/common/edit.png' catchtap='ToggleEditor'></image>
+    <view class='edit-opions' wx:if='{{isEditMode}}'>
+      <view class='eidt-option' catchtap='selectAll'>{{isSelectAll ? '全不选' : '全选'}}</view>
+      <view class='eidt-option' catchtap='setSelectedHadRead'>已读</view>
+      <view class='eidt-option' catchtap='removeSelected'>移除</view>
+    </view>
+  </view>
 </view>

@@ -26,7 +26,8 @@ const defaultStyle = {
 }
 
 const defaultSetting = {
-  autoAddToShelf : false
+  autoAddToShelf: false,
+  directRead : false,
 }
 module.exports = {
   colors, defaultStyle, defaultSetting

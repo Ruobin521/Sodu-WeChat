@@ -1,7 +1,56 @@
 /* pages/tab_shelf/tab_shelf.wxss */
+
 button {
   width: 388rpx;
   height: 128rpx;
   font-size: 30rpx;
-  line-height: 128rpx
+  line-height: 128rpx;
+}
+
+.empty {
+  box-sizing: border-box;
+  position: fixed;
+  top: 40%;
+  width: 100%;
+  padding: 0 50rpx;
+  text-align: center;
+}
+
+.edit-container {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 40rpx;
+  right: 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+  /* border: 1rpx solid #0387FE; */
+  background: white;
+}
+
+.edit-container-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  height: 60rpx;
+  width: 60rpx;
+  transform: translate(-50%, -50%);
+}
+
+.edit-opions {
+  position: absolute;
+  width: 115rpx;
+  top: -250rpx;
+  right: 10rpx;
+  text-align: center;
+  /* transform: translateX(150rpx); */
+}
+
+.eidt-option {
+  font-size: 32rpx;
+  border: 1rpx solid #e6e6e6;
+  margin-top: 10rpx;
+  background: white;
+  height: 70rpx;
+  line-height: 70rpx;
 }

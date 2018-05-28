@@ -1,7 +1,7 @@
 // components/bookitem/bookitem.js
-const setting = require('../../utils/settingStorage.js')
-const storage = require('../../utils/shelfstorage.js')
-const currentBook = require('../../utils/currentBook.js')
+const setting = require('../../storage/settingStorage.js')
+const storage = require('../../storage/shelfstorage.js')
+const currentBook = require('../../storage/currentBook.js')
 
 Component({
   /**
