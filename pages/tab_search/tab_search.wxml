@@ -3,7 +3,7 @@
   <search bindsearch="goSearch"></search>
   <view class='no-reslut' style="display:{{isNoResult ? 'block': 'none'}}">无结果！</view>
   <view class='list'>
-      <bookitem bindlongpress='longpress'   wx:for="{{books}}" data-book="{{item}}"  book="{{item}}" title="{{item.bookName}}" subTitle="{{item.newestCatalogName}}" desc="来源:{{item.lyWeb}}" wx:key="{{item}}">
+      <bookitem bindlongpress='longpress'   wx:for="{{books}}" data-book="{{item}}"  book="{{item}}" title="{{item.bookName}}" subTitle="{{item.type == 0 ? item.newestCatalogName : '作者：' + item.author}}" desc="来源:{{item.lyWeb}}" wx:key="{{item}}">
   </bookitem>
    <options book="{{selectedBook}}"  bindremove="refresh"></options>
   </view>

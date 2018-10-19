@@ -1,4 +1,3 @@
-
 const key = 'bookshelf'
 
 function addBook(book) {
@@ -13,7 +12,11 @@ function addBook(book) {
     return
   }
 
-  var item = Object.assign({ time: (+ new Date()) }, { data: book })
+  var item = Object.assign({
+    time: (+new Date())
+  }, {
+    data: book
+  })
   obj[book.bookId] = item
 
   wx.setStorage({
@@ -72,15 +75,23 @@ function checkExist(id) {
 function UpdateBooks(books) {
   var obj = getBooksObj()
   books.forEach(element => {
-    var item = Object.assign({ time: obj[element.bookId].time }, { data: element })
+    var item = Object.assign({
+      time: obj[element.bookId].time
+    }, {
+      data: element
+    })
     obj[element.bookId] = item
   })
   wx.setStorageSync(key, obj)
 }
 
-function UpdateBook(book) {
+function UpdateBook(book, isTimeUpdate = true) {
   var obj = getBooksObj()
-  var item = Object.assign({ time: (+ new Date()) }, { data: book })
+  var item = Object.assign({
+    time: isTimeUpdate ? (+new Date()) : obj.time
+  }, {
+    data: book
+  })
   obj[book.bookId] = item
   wx.setStorageSync(key, obj)
 }

@@ -4,11 +4,11 @@ const setting = require('../../storage/settingStorage.js')
 const constant = require('../../utils/constant.js')
 const storage = require('../../storage/shelfstorage.js')
 const currentBook = require('../../storage/currentBook.js')
+const catalogStorage = require('../../storage/catalogs.js')
 const addBookText = '加入书架'
 const removeBookText = '移出书架'
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -21,10 +21,12 @@ Page({
     isLoading: false,
     shelfText: '加入书架',
     currentCatalog: null,
+    catalogPageIndex: 0,
+    catalogPageCount: 0,
     book: null,
     light: 0,
     pageStyle: null,
-    colors: constant.colors
+    colors: constant.colors,
   },
   catchEmptyTap(e) {
     return;
@@ -64,7 +66,6 @@ Page({
   catalogSwitch: function (e) {
     let index = e.currentTarget.dataset.type
     let that = this
-    console.log(that.book)
     //目录
     if (index == 0) {
       this.toggleCatalogs(true)
@@ -73,9 +74,12 @@ Page({
     if (index == -1) {
       if (this.data.currentCatalog.index == -1 || this.data.currentCatalog.index == 0) {
         this.toggleCatalogs(true)
-      }
+        return
 
-      let catalog = this.data.catalogData.catalogs[this.data.currentCatalog.index - 1]
+      }
+      let catalogs = catalogStorage.getAllCatalogs()
+
+      let catalog = catalogs[this.data.currentCatalog.index - 1]
       let currenCatalog = this.data.currentCatalog
       let temp = {
         index: catalog.index,
@@ -92,17 +96,19 @@ Page({
         })
         return
       }
-
       this.getHtmlByCatalog(temp)
     }
 
     //下一章
     if (index == 1) {
-      if (this.data.currentCatalog.index == -1 || this.data.currentCatalog.index == this.data.catalogData.catalogs.length - 1) {
+      let catalogs = catalogStorage.getAllCatalogs()
+
+      if (this.data.currentCatalog.index == -1 || this.data.currentCatalog.index == catalogs.length - 1) {
         this.toggleCatalogs(true)
+        return
       }
 
-      let catalog = this.data.catalogData.catalogs[this.data.currentCatalog.index + 1]
+      let catalog = catalogs[this.data.currentCatalog.index + 1]
       let currenCatalog = this.data.currentCatalog
       let temp = {
         index: catalog.index,
@@ -132,6 +138,31 @@ Page({
     let catalog = Object.assign({}, this.data.currentCatalog, e.detail)
     this.getHtmlByCatalog(catalog)
   },
+  catalogsPrePage() {
+    if (this.data.catalogPageIndex <= 0) {
+      return
+    }
+    this.getCatalogsByIndex(this.data.catalogPageIndex - 1)
+  },
+  catalogsNextPage() {
+    if (this.data.catalogPageIndex >= this.data.catalogPageCount - 1) {
+      return
+    }
+    this.getCatalogsByIndex(this.data.catalogPageIndex + 1)
+  },
+
+  catalogsLastPage() {
+    if (this.data.catalogPageIndex >= this.data.catalogPageCount - 1) {
+      return
+    }
+    this.getCatalogsByIndex(this.data.catalogPageCount - 1)
+  },
+  catalogsFirstPage() {
+    if (this.data.catalogPageIndex == 0) {
+      return
+    }
+    this.getCatalogsByIndex(0)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -140,20 +171,39 @@ Page({
     this.setData({
       book: currentBook.getCurrentBook()
     })
-    this.setData({
-      currentCatalog: {
-        index: -1,
-        bookName: options.name ? options.name : '',
-        bookId: options.id ? options.id : '',
-        catalogName: options.cname ? options.cname : '',
-        catalogUrl: options.url ? options.url : ''
-      }
-    })
+
+    if (options.type == '0') {
+      this.setData({
+        currentCatalog: {
+          index: -1,
+          bookName: options.name ? options.name : '',
+          bookId: options.id ? options.id : '',
+          catalogName: options.cname ? options.cname : '',
+          catalogUrl: options.url ? options.url : ''
+        }
+      })
+      this.getHtmlByCatalog(this.data.currentCatalog)
+      this.getBookCatalogs(this.data.currentCatalog.catalogUrl)
+    }
+
+    if (options.type == '1') {
+      this.setData({
+        isLoading: true,
+        currentCatalog: {
+          index: -1,
+          bookName: options.name ? options.name : '',
+          bookId: options.id ? options.id : '',
+          catalogName: options.cname ? options.cname : '',
+          catalogUrl: options.url ? options.url : ''
+        }
+      })
+      this.getBookCatalogs(options.url, true)
+    }
+
     wx.setNavigationBarTitle({
       title: options.name ? options.name : '小说搜索阅读'
     })
-    this.getHtmlByCatalog(this.data.currentCatalog)
-    this.getBookCatalogs(this.data.currentCatalog)
+
   },
   loadSettingStorage() {
     let that = this
@@ -184,8 +234,6 @@ Page({
       currentCatalog: catalog,
       isLoading: true
     })
-    // { "type":0, "id":"", "bookName":"圣墟", "bookId":"430385", "newestCatalogName":"第1064章 轮回审判", "newestCatalogUrl":"", "lastReadCatalogName":"", "lastReadCatalogUrl":"", "updateTime":"2018/05/24 03:57", "author":"", "cover":"", "description":"", "lyWeb":"", "updatePageUrl":"http://www.sodu.cc/mulu_430385.html", "hasNew":true, "IsHistory":false, "cataloglist":[] }
-
     let ustr1 = 'book.lastReadCatalogName'
     let ustr2 = 'book.lastReadCatalogUrl'
     this.setData({
@@ -194,7 +242,7 @@ Page({
     })
     currentBook.updateBook(this.data.book)
     let inShelf = storage.checkExist(this.data.book.bookId)
-    if(inShelf) {
+    if (inShelf) {
       storage.UpdateBook(this.data.book)
     }
     let that = this
@@ -204,7 +252,8 @@ Page({
       data: {
         url: catalog.catalogUrl,
         id: catalog.bookId
-      }, success: function (res) {
+      },
+      success: function (res) {
         if (res.data.code == 0) {
           that.setData({
             currentCatalog: Object.assign({}, that.data.currentCatalog, {
@@ -238,19 +287,30 @@ Page({
     })
   },
 
-  getBookCatalogs(catalog) {
+  getBookCatalogs(ctalogurl, autoLoadFirst) {
     let that = this
     wx.request({
       url: url.catalogs(),
       method: 'POST',
       data: {
-        url: catalog.catalogUrl,
-        id: catalog.bookId
-      }, success: function (res) {
+        url: ctalogurl,
+        id: this.data.book.bookId,
+        isDirct: autoLoadFirst ? 1 : 0
+      },
+      success: function (res) {
         if (res.data.code == 0) {
+          var catalogs = res.data.data.catalogs
+          that.setCurrentCatalogIndex(catalogs)
+          res.data.data.catalogs = null
           that.setData({
             catalogData: res.data.data
           })
+          that.saveCatalogs(catalogs)
+
+          if (autoLoadFirst) {
+            let catalog = Object.assign({}, that.data.currentCatalog, catalogs[0])
+            that.getHtmlByCatalog(catalog)
+          }
         } else {
           console.log(res)
         }
@@ -262,12 +322,30 @@ Page({
         that.setData({
           isLoading: false
         })
-        that.setCurrentCatalogIndex()
       }
     })
   },
-  setCurrentCatalogIndex() {
-    let index = this.data.catalogData.catalogs.findIndex(p => {
+  saveCatalogs(data) {
+    catalogStorage.writeCatalogs(data)
+    this.setData({
+      catalogPageCount: Math.ceil(data.length / 150)
+    })
+    this.getCatalogsByIndex(this.data.catalogPageIndex)
+  },
+  getCatalogsByIndex(index) {
+    console.log(index)
+    var catalogs = catalogStorage.getCatalogs(index)
+    if (!catalogs) {
+      return
+    }
+    var str = 'catalogData.catalogs'
+    this.setData({
+      [str]: catalogs,
+      catalogPageIndex: index
+    })
+  },
+  setCurrentCatalogIndex(catalogs) {
+    let index = catalogs.findIndex(p => {
       return p.catalogUrl == this.data.currentCatalog.catalogUrl
     })
     if (index > -1) {
@@ -285,7 +363,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
     let inShelf = storage.checkExist(this.data.book.bookId)
     this.setData({
       shelfText: inShelf ? removeBookText : addBookText
@@ -303,7 +381,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    catalogStorage.clearCatalogs()
   },
 
   /**
@@ -382,14 +460,20 @@ Page({
       return
     }
     this.setData({
-      pageStyle: Object.assign({}, that.data.pageStyle, { fontSize: isAdd ? fontsize + 2 : fontsize - 2, lineHeight: isAdd ? lineheight + 2 : lineheight - 2 })
+      pageStyle: Object.assign({}, that.data.pageStyle, {
+        fontSize: isAdd ? fontsize + 2 : fontsize - 2,
+        lineHeight: isAdd ? lineheight + 2 : lineheight - 2
+      })
     })
   },
   bgColor(e) {
     let that = this
     let color = e.currentTarget.dataset.color
     this.setData({
-      pageStyle: Object.assign({}, that.data.pageStyle, { background: color.backColor, color: color.fontColor })
+      pageStyle: Object.assign({}, that.data.pageStyle, {
+        background: color.backColor,
+        color: color.fontColor
+      })
     })
 
     wx.setNavigationBarColor({

@@ -3,9 +3,7 @@ const url = require('../../utils/url.js')
 const currentBook = require('../../utils/currentBook.js')
 const setting = require('../../storage/settingStorage.js')
 
-
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,7 +12,8 @@ Page({
     selectedBook: null,
     isEditMode: false,
     isSelectAll: false,
-    isLoading: false
+    isLoading: false,
+    lastUpdateTime: null,
   },
 
   /**
@@ -61,7 +60,7 @@ Page({
     this.checkUpdate(() => {
       wx.stopPullDownRefresh()
       wx.hideNavigationBarLoading()
-    })
+    }, true)
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -96,14 +95,20 @@ Page({
     })
     this.checkUpdate()
   },
-  checkUpdate(func) {
+  checkUpdate(func, force = false) {
     if (this.data.isLoading || !this.data.books || this.data.books.length == 0) {
       func && func()
       return
     }
+    if (!force && this.data.lastUpdateTime && (new Date()).getTime() - this.data.lastUpdateTime.getTime() <= 1000 * 10) {
+      func && func()
+      return
+    }
+
     this.setData({
       isLoading: true
     })
+    wx.showNavigationBarLoading();
     let that = this
     let data = [];
     for (var i = 0; i < this.data.books.length; i++) {
@@ -117,7 +122,9 @@ Page({
     wx.request({
       url: url.checkUpdate(),
       method: 'POST',
-      data: { list: JSON.stringify(data) },
+      data: {
+        list: JSON.stringify(data)
+      },
       success: function (res) {
         if (res.data.code == 0) {
           that.onCheckUpdata(res.data.data)
@@ -132,13 +139,17 @@ Page({
         that.setData({
           isLoading: false
         })
+        wx.hideNavigationBarLoading();
+        that.setData({
+          lastUpdateTime: new Date()
+        })
         func && func()
       }
     })
   },
   navigateToChapter: function (e) {
     let b = e.currentTarget.dataset.book
- 
+
     let index = e.currentTarget.dataset.index
     if (b.isEdit) {
       let str = `books[${index}].isChecked`
@@ -150,7 +161,7 @@ Page({
 
     this.setHadRead(b)
     currentBook.writeCurrentBook(b)
-    let directRead = setting.readTabSetting() &&  setting.readTabSetting().directRead
+    let directRead = setting.readTabSetting() && setting.readTabSetting().directRead
 
     if (directRead && b.lastReadCatalogUrl && b.lastReadCatalogUrl != '') {
       wx.navigateTo({
@@ -169,7 +180,6 @@ Page({
     if (!list || list.length == 0) {
       return
     }
-
     let that = this
     list.forEach((item, index) => {
       var index = this.data.books.findIndex(p => {
@@ -206,7 +216,7 @@ Page({
     this.setData({
       [hasNew]: false
     })
-    storage.UpdateBook(book)
+    storage.UpdateBook(book, false)
   },
   ToggleEditor() {
     let isEdit = this.data.isEditMode;
@@ -307,7 +317,5 @@ Page({
         }
       }
     })
-
-
   }
 })

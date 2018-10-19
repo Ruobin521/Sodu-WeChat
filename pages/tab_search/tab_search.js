@@ -3,7 +3,7 @@ Page({
     books: [],
     isLoading: false,
     para: '',
-    isNoResult:false,
+    isNoResult: false,
     selectedBook: null
   },
   longpress(e) {
@@ -42,7 +42,9 @@ Page({
     }
   },
   getData: function (para) {
-    if (this.data.isLoading) { return }
+    if (this.data.isLoading) {
+      return
+    }
     this.toggleLoading(true)
     var that = this
     wx.request({
@@ -112,8 +114,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享

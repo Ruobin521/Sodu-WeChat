@@ -20,7 +20,15 @@ Component({
       type: String,
       value: ''
     },
-    scrollTop: { 
+    scrollTop: {
+      type: Number,
+      value: 0
+    },
+    pageIndex: {
+      type: Number,
+      value: 0
+    },
+    pageCount: {
       type: Number,
       value: 0
     }
@@ -47,13 +55,13 @@ Component({
       console.log(e)
       // let catalog = e
       var catalog = e.currentTarget.dataset.item
-      this.triggerEvent('catalogItemClick',catalog)
+      this.triggerEvent('catalogItemClick', catalog)
     },
     toTop() {
       this.setData({
         scrollTop: 0
       })
-    }, 
+    },
     toBottom() {
       if (!this.properties.catalogData || !this.properties.catalogData.catalogs) {
         return
@@ -62,6 +70,22 @@ Component({
       this.setData({
         scrollTop: 100 * length
       })
+    },
+    nextPage() {
+      this.toTop()
+      this.triggerEvent('nextPage')
+    },
+    prePage() {
+      this.toTop()
+      this.triggerEvent('prePage')
+    },
+    lastPage() {
+      this.toTop()
+      this.triggerEvent('lastPage')
+    },
+    firstPage() {
+      this.toTop()
+      this.triggerEvent('firstPage')
     }
   }
 })

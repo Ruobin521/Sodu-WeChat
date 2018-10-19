@@ -18,17 +18,26 @@
 
     <view class='list'>
       <view wx:for='{{catalogData.catalogs}}' class='list-item' wx:for-index="index" wx:for-item="item" wx:key='{{index}}' data-item='{{item}}' catchtap='itemClick'>
-        <view class='list-item-index'>{{index + 1}}</view>
+        <view class='list-item-index'>{{item.index + 1}}</view>
         <view class='list-item-text'> {{item.catalogName}}</view>
         <view class="navigator-arrow"></view>
       </view>
     </view>
   </scroll-view>
   <view class='close'>
-    <view class='top' catchtap='toTop'>到顶部</view>
-    <view class='btnClose'>
-      <image catchtap='hide' src='../../images/reader/close.png'></image>
+    <view class='catalog-options'>
+      <view class='top' catchtap='firstPage'>首页</view>
+      <view class='top' catchtap='prePage'>上一页</view>
+      <text>{{pageIndex + 1}}/{{pageCount}}</text>
+      <view class='top' catchtap='nextPage'>下一页</view>
+      <view class='top' catchtap='lastPage'>尾页</view>
     </view>
-    <view class='bottom' catchtap='toBottom'>到底部</view>
+    <view class='close-options'>
+      <view class='top' catchtap='toTop'>到顶部</view>
+      <view class='btnClose'>
+        <image catchtap='hide' src='../../images/reader/close.png'></image>
+      </view>
+      <view class='bottom' catchtap='toBottom'>到底部</view>
+    </view>
   </view>
 </view>

@@ -41,11 +41,14 @@
       <button catchtap="catalogSwitch" data-type="-1">上一章</button>
       <button catchtap="catalogSwitch" data-type="0">目录</button>
       <button catchtap="catalogSwitch" data-type="1">下一章</button>
+      <button catchtap="catalogSwitch" data-type="2" wx:if="{{book.type === 0}}">更新源</button>
     </view>
   </scroll-view>
 
 <!-- 目录 -->
-  <catalogs bindcatalogItemClick='catalogItemClick' showClass="{{animationCatalogsClass}}" background="{{pageStyle.background}}" catalogData='{{catalogData}}'  book='{{book}}'></catalogs>
+  <catalogs bindcatalogItemClick='catalogItemClick' bindprePage='catalogsPrePage' bindnextPage='catalogsNextPage' bindlastPage='catalogsLastPage' bindfirstPage='catalogsFirstPage'
+   showClass="{{animationCatalogsClass}}" background="{{pageStyle.background}}" catalogData='{{catalogData}}'  book='{{book}}'
+   pageIndex='{{catalogPageIndex}}' pageCount='{{catalogPageCount}}'></catalogs>
 
   <loading wx:if="{{isLoading}}"></loading>
 </view>

@@ -43,9 +43,18 @@ Component({
         if (setting.readTabSetting() && setting.readTabSetting().autoAddToShelf) {
           storage.addBook(b)
         }
-        wx.navigateTo({
-          url: `../chapter_page/chapter_page?id=${b.bookId}&name=${b.bookName}`
-        })
+
+        if(b.type == 0) {
+          wx.navigateTo({
+            url: `../chapter_page/chapter_page?id=${b.bookId}&name=${b.bookName}`
+          })
+        }
+
+        else if(b.type == 1) {
+          wx.navigateTo({
+            url: `../reader_page/reader_page?id=${b.bookId}&name=${b.bookName}&url=${b.updatePageUrl}&cname=${b.catalogName}&type=1`
+          })
+        }
       }
     },
   }
